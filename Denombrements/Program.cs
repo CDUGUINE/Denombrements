@@ -15,8 +15,43 @@ namespace Denombrements
          */
         static int NombreElements()
         {
-            Console.Write("nombre total d'éléments à gérer = ");
-            return int.Parse(Console.ReadLine());
+            int nb = -1;
+            while (nb < 0)
+            {
+                Console.Write("nombre total d'éléments à gérer = ");
+                try
+                {
+                    nb = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Veuillez saisir un nombre entier positif.");
+                }
+            }
+            return nb;
+        }
+
+        static int NombreElementsSousEnsemble(int n)
+        {
+            int nb = -1;
+            while (nb < 0)
+            {
+                Console.Write("nombre d'éléments dans le sous-ensemble = ");
+                try
+                {
+                    nb = int.Parse(Console.ReadLine());
+                    if (nb > n)
+                    {
+                        Console.WriteLine("Ce nombre ne peut être supérieur à " + n);
+                        nb = -1;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Veuillez saisir un nombre entier positif.");
+                }
+            }
+            return nb;
         }
         static void Main(string[] args)
         {
@@ -46,8 +81,7 @@ namespace Denombrements
                     if (c == 2)
                     {
                         int t = NombreElements();
-                        Console.Write("nombre d'éléments dans le sous ensemble = "); 
-                        int n = int.Parse(Console.ReadLine()); 
+                        int n = NombreElementsSousEnsemble(t);
                         // calcul de r
                         long r = 1;
                         for (int k = (t - n + 1); k <= t; k++)
@@ -57,8 +91,7 @@ namespace Denombrements
                     else
                     {
                         int t = NombreElements();
-                        Console.Write("nombre d'éléments dans le sous ensemble = ");
-                        int n = int.Parse(Console.ReadLine());
+                        int n = NombreElementsSousEnsemble(t);
                         // calcul de r1
                         long r1 = 1;
                         for (int k = (t - n + 1); k <= t; k++)
