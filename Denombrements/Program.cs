@@ -55,53 +55,73 @@ namespace Denombrements
         }
         static void Main(string[] args)
         {
-            int c = 1;
-            while (c != 0)
+            char choix = '1';
+            while (choix != '0')
             {
                 Console.WriteLine("Permutation ...................... 1");
                 Console.WriteLine("Arrangement ...................... 2");
                 Console.WriteLine("Combinaison ...................... 3");
                 Console.WriteLine("Quitter .......................... 0");
                 Console.Write("Choix :                            ");
-                c = int.Parse(Console.ReadLine());
-
-                if (c == 0) { Environment.Exit(0); }
-
-                if (c == 1)
+                choix = Console.ReadKey().KeyChar;
+                Console.WriteLine();
+                switch (choix)
                 {
-                    int n = NombreElements();
-                    // calcul de r
-                    long r = 1;
-                    for (int k = 1; k <= n; k++)
-                        r *= k;
-                    Console.WriteLine(n + "! = " + r);
-                }
-                else
-                {
-                    if (c == 2)
-                    {
+                    case '0':
+                        {
+                            Environment.Exit(0);
+                            break;
+                        }
+                    case '1':
+                        {
+                            int n = NombreElements();
+                            // calcul de r
+                            long r = 1;
+                            for (int k = 1; k <= n; k++)
+                            {
+                                r *= k;
+                            }
+                            Console.WriteLine(n + "! = " + r);
+                            break;
+                        }
+                    case '2':
+                        {
                         int t = NombreElements();
                         int n = NombreElementsSousEnsemble(t);
                         // calcul de r
                         long r = 1;
                         for (int k = (t - n + 1); k <= t; k++)
+                        {
                             r *= k;
+                        }
                         Console.WriteLine("A(" + t + "/" + n + ") = " + r);
-                    }
-                    else
-                    {
-                        int t = NombreElements();
-                        int n = NombreElementsSousEnsemble(t);
-                        // calcul de r1
-                        long r1 = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
-                            r1 *= k;
-                        // calcul de r2
-                        long r2 = 1;
-                        for (int k = 1; k <= n; k++)
-                            r2 *= k;
-                        Console.WriteLine("C(" + t + "/" + n + ") = " + (r1 / r2));
-                    }
+                            break;
+                        }
+                    case '3':
+                        {
+                            int t = NombreElements();
+                            int n = NombreElementsSousEnsemble(t);
+                            // calcul de r1
+                            long r1 = 1;
+                            for (int k = (t - n + 1); k <= t; k++)
+                            {
+                                r1 *= k;
+                            }
+                            // calcul de r2
+                            long r2 = 1;
+                            for (int k = 1; k <= n; k++)
+                            {
+                                r2 *= k;
+                            }
+                            Console.WriteLine("C(" + t + "/" + n + ") = " + (r1 / r2));
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("Entrez 1, 2, 3 ou 0 pour quitter");
+                            Console.ReadLine();
+                            break;
+                        }
                 }
             }
             Console.ReadLine();
